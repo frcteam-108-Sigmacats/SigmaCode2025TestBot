@@ -6,6 +6,8 @@ package frc.robot;
 
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.Unit;
 
@@ -20,6 +22,21 @@ import edu.wpi.first.units.Unit;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+  }
+  public static final class SwerveConstants{
+    static double wheelBase = Units.inchesToMeters(24.5);
+    static double trackWidth = Units.inchesToMeters(21.625);
+    public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(new Translation2d(wheelBase / 2.0, trackWidth / 2.0)
+        , new Translation2d(wheelBase / 2.0, -trackWidth / 2.0), new Translation2d(-wheelBase / 2.0, trackWidth / 2.0), 
+        new Translation2d(-wheelBase / 2.0, -trackWidth / 2.0));
+
+    //Max Drive and Turn Speed Restrictions
+    public static final double kMaxSpeedMPS = 12;
+    public static final double kMaxAngularSpeed = 4 * Math.PI;
+
+    public static final boolean gyroReversed = false;
+
+    public static final double deadband = 0.2;
   }
   public static final class ModuleConstants{
     public static final double kFreeSpeedRPM = 5676;
